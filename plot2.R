@@ -1,0 +1,6 @@
+library(sqldf)
+library(lubridate)
+dat <- read.csv.sql("household_power_consumption.txt", sql = "select * from file where Date in ('1/2/2007', '2/2/2007')", sep = ";")
+png(file = "plot2.png")
+plot(dmy_hms(paste(dat$Date, dat$Time)),dat$Global_active_power, xlab = "", ylab = "Global Active Power (killowatts)", type = "l")
+dev.off()
